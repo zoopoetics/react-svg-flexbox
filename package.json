@@ -2,14 +2,22 @@
   "name": "react-svg-flexbox",
   "version": "0.1.0",
   "description": "A React-based Flexbox layout container for SVG elements.",
-  "main": "src/index.js",
-  "author": "Peter Barker",
+  "main": "dist/bundle.js",
   "license": "MIT",
+  "author": "Peter Barker",
   "repository": {
     "type": "git",
     "url": "https://github.com/zoopoetics/react-svg-flexbox"
   },
+  "bugs": {
+    "url": "https://github.com/zoopoetics/react-svg-flexbox/issues"
+  },
+  "homepage": "https://zoopoetics.github.io/react-svg-flexbox/",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "rollup -c",
     "build-storybook": "build-storybook -s public",
     "start": "start-storybook -p 9009",
     "test": "jest"
@@ -17,8 +25,8 @@
   "dependencies": {
     "css-layout": "1.1.1",
     "prop-types": "^15.6.0",
-    "react": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0",
-    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0"
+    "react": "^0.14.9 || ^15.3.0 || ^16.0",
+    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.3.12",
@@ -27,11 +35,20 @@
     "@storybook/react": "3.3.12",
     "babel-core": "6.26.0",
     "babel-jest": "22.1.0",
+    "babel-plugin-external-helpers": "6.22.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
     "babel-preset-react-app": "3.0.3",
+    "babel-preset-stage-0": "6.24.1",
     "babel-runtime": "6.26.0",
     "jest": "22.1.4",
-    "react-test-renderer": "^16.2.0",
-    "request": "2.83.0"
+    "react-test-renderer": "16.2.0",
+    "request": "2.83.0",
+    "rollup": "0.56.2",
+    "rollup-plugin-babel": "3.0.3",
+    "rollup-plugin-commonjs": "8.3.0",
+    "rollup-plugin-node-resolve": "3.0.3",
+    "rollup-plugin-uglify": "3.0.0"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -50,11 +67,6 @@
     ],
     "moduleFileExtensions": [
       "js"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
     ]
   }
 }
