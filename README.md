@@ -160,6 +160,3 @@ If you don't do this, your layout values will disappear meaninglessly into the v
 
 You might have to fiddle with [baseline style](http://bl.ocks.org/eweitnauer/7325338) in order to get text elements into the correct vertical alignment.
 
-## Acknowledgements
-
-This project was bootstrapped with [create-react-app](https://github.com/facebook/create-react-app).
