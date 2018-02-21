@@ -611,4 +611,83 @@ storiesOf('Flexbox', module)
     }));
 
     return getStory(flexProps, children);
+  })
+
+  .add('nested', () => {
+    const flexProps = {
+      flexDirection: 'row',
+    };
+
+    class TextComponent extends React.Component {
+      static propTypes = {
+        x: PropTypes.number,
+        y: PropTypes.number,
+      };
+      render() {
+        return (
+          <g
+            transform={`translate(${this.props.x} ${this.props.y})`}>
+            <text style={{
+              dominantBaseline: 'text-before-edge',
+              fill: 'white',
+              fontFamily: 'Arial,Helvetica',
+            }}>
+              {'flexy flex flex'}
+            </text>
+          </g>
+        );
+      }
+    }
+
+    const barHeight = 60;
+    return (
+      <svg
+        height={barHeight}
+        width={width}>
+
+        <rect
+          className={'BackgroundFill'}
+          fill={'#ccc'}
+          height={barHeight}
+          width={width} />
+
+        <Flexbox
+          className={'contents'}
+          style={{
+            alignContent: 'stretch',
+            flexDirection: 'column',
+            height: barHeight,
+            padding: 12,
+            width,
+          }}>
+
+          <Flexbox
+            className={'row1'}
+            style={{
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            <TextComponent style={{marginRight: 12}} />
+            <TextComponent />
+            {null}
+            {'raw string'}
+          </Flexbox>
+
+          <Flexbox
+            className={'row2'}
+            style={{
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            <TextComponent />
+            <TextComponent style={{marginLeft: 28}} />
+            <rect
+              fill={'#f0c'}
+              height={10}
+              style={{marginLeft: 28}}
+              width={10} />
+          </Flexbox>
+        </Flexbox>
+      </svg>
+    );
   });
