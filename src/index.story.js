@@ -626,7 +626,7 @@ storiesOf('Flexbox', module)
       render() {
         return (
           <g
-            transform={`translate(${this.props.x} ${this.props.y})`}>
+            transform={`translate(${this.props.x || 0} ${this.props.y || 0})`}>
             <text style={{
               dominantBaseline: 'text-before-edge',
               fill: 'white',
