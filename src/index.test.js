@@ -63,11 +63,24 @@ describe('Flexbox', () => {
 
   describe('has a getChildren function that', () => {
     it('returns all children flattened into a single array', () => {
-      const children = [];
-      children.push({});
-      children.push(Array.from({length: 10}, () => ({})));
-      children.push({});
-      expect(instance.getChildren(children).length).toEqual(12);
+      class ReactComponent extends React.Component {
+        render() {
+          return (
+            <g></g>
+          );
+        }
+      }
+
+      // Null indexes and string literals will be ignored
+      const children = [
+        new ReactComponent(),
+        {},
+        null,
+        'string literal',
+        [{}, {}],
+      ];
+
+      expect(instance.getChildren(children).length).toEqual(4);
     });
   });
 
