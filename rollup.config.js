@@ -17,15 +17,14 @@ export default {
   plugins: [
     resolve(),
     babel({
-      exclude: 'node_modules/**',
       plugins: ['external-helpers'],
       presets: [
         ['env', {
-          'modules': true,
+          'modules': false,
         }],
         'stage-0',
-        'react',
-      ],
+        'react'
+      ]
     }),
     uglify(),
   ],
