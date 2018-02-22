@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "build-storybook": "build-storybook -s public",
-    "start": "start-storybook -p 9009",
-    "test": "jest"
+    "build-storybook": "BABEL_ENV=dev build-storybook",
+    "start": "BABEL_ENV=dev start-storybook -p 9009",
+    "test": "BABEL_ENV=dev jest"
   },
   "dependencies": {
     "css-layout": "1.1.1",
