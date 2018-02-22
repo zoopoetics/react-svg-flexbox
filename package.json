@@ -25,8 +25,8 @@
   "dependencies": {
     "css-layout": "1.1.1",
     "prop-types": "^15.6.0",
-    "react": "^0.14.9 || ^15.3.0 || ^16.0",
-    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0"
+    "react": "^15.3.0 || ^16.0",
+    "react-dom": "^15.3.0 || ^16.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.3.12",
