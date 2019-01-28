@@ -612,6 +612,26 @@ storiesOf('Flexbox', module)
 
     return getStory(flexProps, children);
   })
+  
+  .add('only one child', () => {
+    const flexProps = {
+      flexDirection: 'row',
+    };
+    const child = 
+      <g key={0}>
+        <rect
+          fill={fill}
+          height={rectSize}
+          width={rectSize} />
+        <text
+          style={textStyle}
+          x={rectSize / 2}
+          y={rectSize / 2}>
+          Item 1
+        </text>
+      </g>;
+    return getStory(flexProps, child);
+  })
 
   .add('nested', () => {
     const flexProps = {

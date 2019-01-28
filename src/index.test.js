@@ -29,6 +29,18 @@ describe('Flexbox', () => {
   it('matches snapshot', () => {
     expect(tree).toMatchSnapshot();
   });
+  
+  it('does not throw, when only one child', () => {
+	class ReactComponent extends React.Component {
+      render() {
+	    return (
+		  <g></g>
+	    );
+	  }
+    }
+	
+	expect(() => { instance.getChildren(new ReactComponent()); }).not.toThrow();
+  });
 
   describe('implements componentDidMount and', () => {
     it('forces an initial update', () => {

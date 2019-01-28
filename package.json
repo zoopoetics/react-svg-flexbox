@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "build-storybook": "BABEL_ENV=dev build-storybook",
-    "start": "BABEL_ENV=dev start-storybook -p 9009",
-    "test": "BABEL_ENV=dev jest"
+    "build-storybook": "cross-env BABEL_ENV=dev build-storybook",
+    "start": "cross-env BABEL_ENV=dev start-storybook -p 9009",
+    "test": "cross-env BABEL_ENV=dev jest"
   },
   "dependencies": {
     "css-layout": "1.1.1",
@@ -41,6 +41,7 @@
     "babel-preset-react-app": "3.0.3",
     "babel-preset-stage-0": "6.24.1",
     "babel-runtime": "6.26.0",
+    "cross-env": "^5.2.0",
     "jest": "22.1.4",
     "react-test-renderer": "16.2.0",
     "request": "2.83.0",

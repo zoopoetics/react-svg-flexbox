@@ -90,7 +90,7 @@ export default class Flexbox extends React.Component {
   by flattening children out into a single array.
   */
   getChildren(children) {
-    return children
+    return Array.isArray(children) ? children
       // Filter out null indexes:
       .filter((child) => child)
       // Filter out string literals:
@@ -98,7 +98,7 @@ export default class Flexbox extends React.Component {
       // Ensure that all children are arrays:
       .map((child) => Array.isArray(child) ? child : [child])
       // Flatten into a single array:
-      .reduce((previous, current) => previous.concat(current), []);
+      .reduce((previous, current) => previous.concat(current), []) : [children];
   }
 
   /*
