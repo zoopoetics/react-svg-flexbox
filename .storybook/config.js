@@ -1,7 +1,7 @@
 import {configure} from '@storybook/react';
 
 function loadStories() {
-  require('../src/index.story');
+  require('../src/components/flexbox/index.story');
 }
 
 configure(loadStories, module);

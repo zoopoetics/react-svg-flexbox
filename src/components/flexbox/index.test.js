@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Flexbox from './index';
 
+/* eslint-disable max-statements */
 describe('Flexbox', () => {
   const onLayout = jest.fn();
 
@@ -12,14 +13,8 @@ describe('Flexbox', () => {
   beforeEach(() => {
     component = renderer.create(
       <Flexbox onLayout={onLayout}>
-        <rect
-          fill={'#f0c'}
-          height={10}
-          width={10} />
-        <rect
-          fill={'#ccc'}
-          height={456}
-          width={123} />
+        <rect fill={'#f0c'} height={10} width={10} />
+        <rect fill={'#ccc'} height={456} width={123} />
       </Flexbox>,
     );
     instance = component.getInstance();
@@ -39,13 +34,13 @@ describe('Flexbox', () => {
   });
 
   describe('implements componentDidUpdate and', () => {
-    it('flips the _shouldUpdateAgain switch', () => {
+    it('flips the shouldUpdateAgain switch', () => {
       instance.componentDidUpdate();
-      expect(instance._shouldUpdateAgain).toEqual(false);
+      expect(instance.shouldUpdateAgain).toStrictEqual(false);
     });
-    it('performs the expected sequence of actions if _shouldUpdateAgain is true', () => {
+    it('performs the expected sequence of actions if shouldUpdateAgain is true', () => {
       instance.getChildrenMeasured = jest.fn();
-      instance.getChildren = jest.fn();
+      instance.getFlattenedChildren = jest.fn();
       instance.getChildrenAsMergedStyles = jest.fn();
       instance.getComputedLayout = jest.fn();
       instance.setState = jest.fn();
@@ -53,7 +48,7 @@ describe('Flexbox', () => {
       instance.componentDidUpdate();
 
       expect(instance.getChildrenMeasured).toHaveBeenCalled();
-      expect(instance.getChildren).toHaveBeenCalled();
+      expect(instance.getFlattenedChildren).toHaveBeenCalled();
       expect(instance.getChildrenAsMergedStyles).toHaveBeenCalled();
       expect(instance.getComputedLayout).toHaveBeenCalled();
       expect(instance.props.onLayout).toHaveBeenCalled();
@@ -65,9 +60,7 @@ describe('Flexbox', () => {
     it('returns all children flattened into a single array', () => {
       class ReactComponent extends React.Component {
         render() {
-          return (
-            <g></g>
-          );
+          return <g />;
         }
       }
 
@@ -80,7 +73,7 @@ describe('Flexbox', () => {
         [{}, {}],
       ];
 
-      expect(instance.getChildren(children).length).toEqual(4);
+      expect(instance.getFlattenedChildren(children)).toHaveLength(4);
     });
   });
 
@@ -88,8 +81,9 @@ describe('Flexbox', () => {
     it('returns an array of children with measurements merged into their styles', () => {
       const length = 10;
       const fill = '#f0c';
-      const style = {fill};
-      const props = {style};
+      const props = {
+        style: {fill},
+      };
       const child = {props};
       const children = Array.from({length}, () => child);
       const height = 80;
@@ -105,9 +99,9 @@ describe('Flexbox', () => {
       );
       childrenWithMergedStyles.forEach((childWithMergedStyles) => {
         const {style} = childWithMergedStyles;
-        expect(style.fill).toEqual(fill);
-        expect(style.height).toEqual(height);
-        expect(style.width).toEqual(width);
+        expect(style.fill).toStrictEqual(fill);
+        expect(style.height).toStrictEqual(height);
+        expect(style.width).toStrictEqual(width);
       });
     });
   });
@@ -125,10 +119,10 @@ describe('Flexbox', () => {
       const length = 10;
       const childRefs = Array.from({length}, () => childRef);
       const childrenMeasured = instance.getChildrenMeasured(childRefs);
-      expect(childrenMeasured.length).toEqual(length);
+      expect(childrenMeasured).toHaveLength(length);
       childrenMeasured.forEach((childMeasured) => {
-        expect(childMeasured.height).toEqual(height);
-        expect(childMeasured.width).toEqual(width);
+        expect(childMeasured.height).toStrictEqual(height);
+        expect(childMeasured.width).toStrictEqual(width);
       });
     });
   });
@@ -148,7 +142,7 @@ describe('Flexbox', () => {
       is already well tested, so we can be confident
       that the expected attributes exist.
       */
-      expect(computedLayout.children).toEqual([]);
+      expect(computedLayout.children).toStrictEqual([]);
       expect(computedLayout.lastLayout).toBeDefined();
       expect(computedLayout.layout).toBeDefined();
       expect(computedLayout.shouldUpdate).toBeDefined();
@@ -170,8 +164,8 @@ describe('Flexbox', () => {
         child,
         layoutChild,
       );
-      expect(layoutProps.cx).toEqual(left + radius);
-      expect(layoutProps.cy).toEqual(top + radius);
+      expect(layoutProps.cx).toStrictEqual(left + radius);
+      expect(layoutProps.cy).toStrictEqual(top + radius);
     });
     it('returns cx and cy for an ellipse element, offset by radii', () => {
       const type = 'ellipse';
@@ -186,8 +180,8 @@ describe('Flexbox', () => {
         child,
         layoutChild,
       );
-      expect(layoutProps.cx).toEqual(left + radiusX);
-      expect(layoutProps.cy).toEqual(top + radiusY);
+      expect(layoutProps.cx).toStrictEqual(left + radiusX);
+      expect(layoutProps.cy).toStrictEqual(top + radiusY);
     });
     it('returns a translate transform for a group element', () => {
       const type = 'g';
@@ -196,7 +190,7 @@ describe('Flexbox', () => {
         child,
         layoutChild,
       );
-      expect(layoutProps.transform).toEqual('translate(20 40)');
+      expect(layoutProps.transform).toStrictEqual('translate(20 40)');
     });
     it('returns a translate transform for a path element', () => {
       const type = 'path';
@@ -205,7 +199,7 @@ describe('Flexbox', () => {
         child,
         layoutChild,
       );
-      expect(layoutProps.transform).toEqual('translate(20 40)');
+      expect(layoutProps.transform).toStrictEqual('translate(20 40)');
     });
     it('returns a translate transform for a polygon element', () => {
       const type = 'polygon';
@@ -214,7 +208,7 @@ describe('Flexbox', () => {
         child,
         layoutChild,
       );
-      expect(layoutProps.transform).toEqual('translate(20 40)');
+      expect(layoutProps.transform).toStrictEqual('translate(20 40)');
     });
     it('returns a translate transform for a polyline element', () => {
       const type = 'polyline';
@@ -223,7 +217,7 @@ describe('Flexbox', () => {
         child,
         layoutChild,
       );
-      expect(layoutProps.transform).toEqual('translate(20 40)');
+      expect(layoutProps.transform).toStrictEqual('translate(20 40)');
     });
     it('returns x and y for all other element types', () => {
       const type = 'stegosaurus';
@@ -232,12 +226,13 @@ describe('Flexbox', () => {
         child,
         layoutChild,
       );
-      expect(layoutProps.x).toEqual(left);
-      expect(layoutProps.y).toEqual(top);
+      expect(layoutProps.x).toStrictEqual(left);
+      expect(layoutProps.y).toStrictEqual(top);
     });
     it('returns an empty object if layoutChild is falsy', () => {
       const layoutProps = instance.getLayoutAttributesForChild({});
-      expect(layoutProps).toEqual({});
+      expect(layoutProps).toStrictEqual({});
     });
   });
 });
+/* eslint-enable max-statements */

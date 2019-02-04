@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import computeLayout from 'css-layout';
 
 export default class Flexbox extends React.Component {
-
   static propTypes = {
     children: PropTypes.array,
     className: PropTypes.string,
@@ -25,7 +24,8 @@ export default class Flexbox extends React.Component {
 
   constructor() {
     super();
-    this._shouldUpdateAgain = false;
+    this.childRefs = [];
+    this.shouldUpdateAgain = false;
     this.state = {
       layout: {
         children: [],
@@ -49,34 +49,31 @@ export default class Flexbox extends React.Component {
     on/off switch to determine whether or not we should
     set layout on state again.
     */
-    this._shouldUpdateAgain = !this._shouldUpdateAgain;
+    this.shouldUpdateAgain = !this.shouldUpdateAgain;
 
-    if (this._shouldUpdateAgain) {
+    if (this.shouldUpdateAgain) {
+      const {children, onLayout, style} = this.props;
+
       // Measure child elements.
-      const childrenMeasured = this.getChildrenMeasured(
-        this._childRefs,
-      );
+      const childrenMeasured = this.getChildrenMeasured(this.childRefs);
 
       // Merge measurements with passed styles.
-      const children = this.getChildren(
-        this.props.children,
-      );
+      const flattenedChildren = this.getFlattenedChildren(children);
       const childrenAsMergedStyles = this.getChildrenAsMergedStyles(
-        children,
+        flattenedChildren,
         childrenMeasured,
       );
 
       // Compute layout.
-      const layout = this.getComputedLayout(
-        childrenAsMergedStyles,
-        this.props.style,
-      );
+      const layout = this.getComputedLayout(childrenAsMergedStyles, style);
 
       // Pass layout to any concerned parent.
-      this.props.onLayout(layout);
+      onLayout(layout);
 
       // Trigger an update with the new layout.
+      /* eslint-disable react/no-did-update-set-state */
       this.setState({layout});
+      /* eslint-enable react/no-did-update-set-state */
     }
   }
 
@@ -89,16 +86,18 @@ export default class Flexbox extends React.Component {
   React will throw an error. This can be prevented
   by flattening children out into a single array.
   */
-  getChildren(children) {
-    return children
-      // Filter out null indexes:
-      .filter((child) => child)
-      // Filter out string literals:
-      .filter((child) => typeof child !== 'string')
-      // Ensure that all children are arrays:
-      .map((child) => Array.isArray(child) ? child : [child])
-      // Flatten into a single array:
-      .reduce((previous, current) => previous.concat(current), []);
+  getFlattenedChildren(children) {
+    return (
+      children
+        // Filter out null indexes:
+        .filter((child) => child)
+        // Filter out string literals:
+        .filter((child) => typeof child !== 'string')
+        // Ensure that all children are arrays:
+        .map((child) => (Array.isArray(child) ? child : [child]))
+        // Flatten into a single array:
+        .reduce((previous, current) => previous.concat(current), [])
+    );
   }
 
   /*
@@ -130,9 +129,15 @@ export default class Flexbox extends React.Component {
   them for you and use those numbers for layout.
   */
   getChildrenMeasured(childRefs) {
-    return (childRefs && childRefs.length) ? childRefs.map((childRef) =>
-      childRef.getBBox ? childRef.getBBox() : findDOMNode(childRef).getBBox()
-    ) : [];
+    /* eslint-disable react/no-find-dom-node */
+    return childRefs && childRefs.length
+      ? childRefs.map((childRef) =>
+          childRef.getBBox
+            ? childRef.getBBox()
+            : findDOMNode(childRef).getBBox(),
+        )
+      : [];
+    /* eslint-enable react/no-find-dom-node */
   }
 
   /*
@@ -140,7 +145,7 @@ export default class Flexbox extends React.Component {
   */
   getComputedLayout(childrenWithMergedStyles, style) {
     const layout = {
-      children: [...childrenWithMergedStyles || []],
+      children: Array.from(childrenWithMergedStyles || []),
       style: {...style},
     };
     computeLayout(layout);
@@ -151,9 +156,7 @@ export default class Flexbox extends React.Component {
   Digs into a layout object and returns the array of children.
   */
   getLayoutChildren(layout) {
-    if (layout &&
-        layout.children &&
-        layout.children.length) {
+    if (layout && layout.children && layout.children.length) {
       return layout.children;
     }
     return [];
@@ -167,7 +170,7 @@ export default class Flexbox extends React.Component {
     if (layoutChild && layoutChild.layout) {
       const {left, top} = layoutChild.layout;
       switch (child.type) {
-        case 'circle':
+        case 'circle': {
           /*
           Offset is used to position the circle from
           its top left corner, not its center.
@@ -177,7 +180,8 @@ export default class Flexbox extends React.Component {
             cx: left + offset,
             cy: top + offset,
           };
-        case 'ellipse':
+        }
+        case 'ellipse': {
           /*
           Offset is used to position the ellipse from
           its top left corner, not its center.
@@ -188,6 +192,7 @@ export default class Flexbox extends React.Component {
             cx: left + offsetX,
             cy: top + offsetY,
           };
+        }
         case 'g':
         case 'path':
         case 'polygon':
@@ -206,6 +211,9 @@ export default class Flexbox extends React.Component {
   }
 
   render() {
+    const {children, className, x, y} = this.props;
+    const {layout} = this.state;
+
     /*
     Re-create an array of refs on each render.
 
@@ -216,30 +224,24 @@ export default class Flexbox extends React.Component {
     https://reactjs.org/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components
     - this seemed to be the best available approach.
     */
-    this._childRefs = [];
+    this.childRefs = [];
 
-    const children = this.getChildren(
-      this.props.children,
-    );
-    const layoutChildren = this.getLayoutChildren(
-      this.state.layout,
-    );
+    const flattenedChildren = this.getFlattenedChildren(children);
+    const layoutChildren = this.getLayoutChildren(layout);
 
     return (
-      <g
-        className={this.props.className}
-        transform={`translate(${this.props.x} ${this.props.y})`}>
-        {children.map((child, index) => React.cloneElement(child, {
-          ...child.props,
-          ...this.getLayoutAttributesForChild(
-            child,
-            layoutChildren[index],
-          ),
-          key: `flexboxChild${index}`,
-          ref: (node) => node ? this._childRefs.push(node) : null,
-        }))}
+      <g className={className} transform={`translate(${x} ${y})`}>
+        {flattenedChildren.map((child, index) => {
+          return React.cloneElement(child, {
+            ...child.props,
+            ...this.getLayoutAttributesForChild(child, layoutChildren[index]),
+            /* eslint-disable react/no-array-index-key */
+            key: `child-${index}`,
+            /* eslint-enable react/no-array-index-key */
+            ref: (node) => (node ? this.childRefs.push(node) : null),
+          });
+        })}
       </g>
     );
   }
-
 }

@@ -1,7 +1,10 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import {storiesOf} from '@storybook/react';
-import Flexbox from './';
+import Flexbox from '.';
 
 const fill = '#cd6a51';
 const height = 600;
@@ -17,15 +20,13 @@ const textStyle = {
 const width = 800;
 
 const getStory = (flexProps, children) => (
-  <svg
-    height={height}
-    width={width}>
-
+  <svg height={height} width={width}>
     <rect
       className={'BackgroundFill'}
       fill={'#ccc'}
       height={'100%'}
-      width={'100%'} />
+      width={'100%'}
+    />
 
     <Flexbox
       style={{
@@ -36,12 +37,10 @@ const getStory = (flexProps, children) => (
       }}>
       {children}
     </Flexbox>
-
   </svg>
 );
 
 storiesOf('Flexbox', module)
-
   .add('flex-direction: row', () => {
     const flexProps = {
       flexDirection: 'row',
@@ -52,14 +51,8 @@ storiesOf('Flexbox', module)
         style={{
           marginRight: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={width} />
+        <text style={textStyle} x={width / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -77,14 +70,8 @@ storiesOf('Flexbox', module)
         style={{
           marginLeft: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={width} />
+        <text style={textStyle} x={width / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -102,14 +89,8 @@ storiesOf('Flexbox', module)
         style={{
           marginBottom: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={width} />
+        <text style={textStyle} x={width / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -127,14 +108,8 @@ storiesOf('Flexbox', module)
         style={{
           marginTop: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={width} />
+        <text style={textStyle} x={width / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -147,20 +122,14 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'no-wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
           marginRight: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={rectSize} />
+        <text style={textStyle} x={rectSize / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -173,21 +142,15 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
           marginBottom: margin,
           marginRight: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={rectSize} />
+        <text style={textStyle} x={rectSize / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -200,24 +163,20 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       justifyContent: 'flex-start',
     };
-    const children = [rectSize, rectSize / 2, rectSize * 2].map((width, index) => (
-      <g
-        key={index}
-        style={{
-          marginRight: margin,
-        }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize / 2, rectSize * 2].map(
+      (width, index) => (
+        <g
+          key={index}
+          style={{
+            marginRight: margin,
+          }}>
+          <rect fill={fill} height={rectSize} width={width} />
+          <text style={textStyle} x={width / 2} y={rectSize / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -226,24 +185,20 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       justifyContent: 'flex-end',
     };
-    const children = [rectSize, rectSize / 2, rectSize * 2].map((width, index) => (
-      <g
-        key={index}
-        style={{
-          marginLeft: margin,
-        }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize / 2, rectSize * 2].map(
+      (width, index) => (
+        <g
+          key={index}
+          style={{
+            marginLeft: margin,
+          }}>
+          <rect fill={fill} height={rectSize} width={width} />
+          <text style={textStyle} x={width / 2} y={rectSize / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -252,24 +207,20 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       justifyContent: 'center',
     };
-    const children = [rectSize, rectSize / 2, rectSize * 2].map((width, index) => (
-      <g
-        key={index}
-        style={{
-          marginRight: margin,
-        }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize / 2, rectSize * 2].map(
+      (width, index) => (
+        <g
+          key={index}
+          style={{
+            marginRight: margin,
+          }}>
+          <rect fill={fill} height={rectSize} width={width} />
+          <text style={textStyle} x={width / 2} y={rectSize / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -278,20 +229,16 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       justifyContent: 'space-between',
     };
-    const children = [rectSize, rectSize / 2, rectSize * 2].map((width, index) => (
-      <g key={index}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize / 2, rectSize * 2].map(
+      (width, index) => (
+        <g key={index}>
+          <rect fill={fill} height={rectSize} width={width} />
+          <text style={textStyle} x={width / 2} y={rectSize / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -300,20 +247,16 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       justifyContent: 'space-around',
     };
-    const children = [rectSize, rectSize / 2, rectSize * 2].map((width, index) => (
-      <g key={index}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={width} />
-        <text
-          style={textStyle}
-          x={width / 2}
-          y={rectSize / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize / 2, rectSize * 2].map(
+      (width, index) => (
+        <g key={index}>
+          <rect fill={fill} height={rectSize} width={width} />
+          <text style={textStyle} x={width / 2} y={rectSize / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -322,24 +265,20 @@ storiesOf('Flexbox', module)
       alignItems: 'flex-start',
       flexDirection: 'row',
     };
-    const children = [rectSize, rectSize * 2, rectSize / 2, rectSize].map((height, index) => (
-      <g
-        key={index}
-        style={{
-          marginRight: margin,
-        }}>
-        <rect
-          fill={fill}
-          height={height}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={height / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize * 2, rectSize / 2, rectSize].map(
+      (height, index) => (
+        <g
+          key={index}
+          style={{
+            marginRight: margin,
+          }}>
+          <rect fill={fill} height={height} width={rectSize} />
+          <text style={textStyle} x={rectSize / 2} y={height / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -348,24 +287,20 @@ storiesOf('Flexbox', module)
       alignItems: 'flex-end',
       flexDirection: 'row',
     };
-    const children = [rectSize, rectSize * 2, rectSize / 2, rectSize].map((height, index) => (
-      <g
-        key={index}
-        style={{
-          marginRight: margin,
-        }}>
-        <rect
-          fill={fill}
-          height={height}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={height / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize * 2, rectSize / 2, rectSize].map(
+      (height, index) => (
+        <g
+          key={index}
+          style={{
+            marginRight: margin,
+          }}>
+          <rect fill={fill} height={height} width={rectSize} />
+          <text style={textStyle} x={rectSize / 2} y={height / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -374,24 +309,20 @@ storiesOf('Flexbox', module)
       alignItems: 'center',
       flexDirection: 'row',
     };
-    const children = [rectSize, rectSize * 2, rectSize / 2, rectSize].map((height, index) => (
-      <g
-        key={index}
-        style={{
-          marginRight: margin,
-        }}>
-        <rect
-          fill={fill}
-          height={height}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={height / 2}>
-          {`Item ${index + 1}`}
-        </text>
-      </g>
-    ));
+    const children = [rectSize, rectSize * 2, rectSize / 2, rectSize].map(
+      (height, index) => (
+        <g
+          key={index}
+          style={{
+            marginRight: margin,
+          }}>
+          <rect fill={fill} height={height} width={rectSize} />
+          <text style={textStyle} x={rectSize / 2} y={height / 2}>
+            {`Item ${index + 1}`}
+          </text>
+        </g>
+      ),
+    );
     return getStory(flexProps, children);
   })
 
@@ -401,21 +332,15 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
           marginBottom: margin,
           marginRight: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={rectSize} />
+        <text style={textStyle} x={rectSize / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -429,21 +354,15 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
           marginRight: margin,
           marginTop: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={rectSize} />
+        <text style={textStyle} x={rectSize / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -457,21 +376,15 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
           marginBottom: margin,
           marginRight: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={rectSize} />
+        <text style={textStyle} x={rectSize / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -485,20 +398,14 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
           marginRight: margin,
         }}>
-        <rect
-          fill={fill}
-          height={rectSize}
-          width={rectSize} />
-        <text
-          style={textStyle}
-          x={rectSize / 2}
-          y={rectSize / 2}>
+        <rect fill={fill} height={rectSize} width={rectSize} />
+        <text style={textStyle} x={rectSize / 2} y={rectSize / 2}>
           {`Item ${index + 1}`}
         </text>
       </g>
@@ -514,7 +421,6 @@ storiesOf('Flexbox', module)
     };
 
     class CustomComponent extends React.Component {
-
       static propTypes = {
         x: PropTypes.number,
         y: PropTypes.number,
@@ -526,19 +432,11 @@ storiesOf('Flexbox', module)
       };
 
       render() {
+        const {x, y} = this.props;
         return (
-          <g
-            className={'CustomComponent'}
-            transform={`translate(${this.props.x} ${this.props.y})`}>
-            <rect
-              fill={'blue'}
-              height={100}
-              width={400} />
-            <text
-              fill={'white'}
-              fontFamily={'Arial,Helvetica'}
-              x={20}
-              y={20}>
+          <g className={'CustomComponent'} transform={`translate(${x} ${y})`}>
+            <rect fill={'blue'} height={100} width={400} />
+            <text fill={'white'} fontFamily={'Arial,Helvetica'} x={20} y={20}>
               {'react-svg-flexbox'}
             </text>
           </g>
@@ -546,92 +444,66 @@ storiesOf('Flexbox', module)
       }
     }
 
+    /* eslint-disable react/jsx-key */
     const children = [
-      (
-        <circle
-          fill={'black'}
-          r={50} />
-      ),
-      (
-        <ellipse
-          fill={'white'}
-          rx={50}
-          ry={30} />
-      ),
-      (
-        <path
-          d={'M 0 0 L 100 0 L 50 100 z'}
-          fill={'orange'} />
-      ),
-      (
-        <polygon
-          fill={'cyan'}
-          points={'0,100 50,0 100,100'} />
-      ),
-      (
-        <text
-          fill={'green'}
-          fontFamily={'Arial,Helvetica'}
-          style={{
-            dominantBaseline: 'text-before-edge',
-          }}>
-          {'wow such flexbox'}
-        </text>
-      ),
-      (
-        <polyline
-          fill={'none'}
-          points={'0,100 50,0 100,100'}
-          stroke={'yellow'}
-          strokeWidth={3} />
-      ),
-      (
-        <rect
-          fill={'red'}
-          height={100}
-          width={100} />
-      ),
-      (
-        <image
-          height={100}
-          href={'https://media.giphy.com/media/RKCAeG662WQSc/giphy.gif'}
-          width={80} />
-      ),
-      (
-        <CustomComponent />
-      ),
-    ].map((child, index) => React.cloneElement(child, {
-      ...child.props,
-      key: `child${index}`,
-      style: {
-        ...child.props.style,
-        marginBottom: 20,
-        marginRight: 20,
-      },
-    }));
+      <circle fill={'black'} r={50} />,
+      <ellipse fill={'white'} rx={50} ry={30} />,
+      <path d={'M 0 0 L 100 0 L 50 100 z'} fill={'orange'} />,
+      <polygon fill={'cyan'} points={'0,100 50,0 100,100'} />,
+      <text
+        fill={'green'}
+        fontFamily={'Arial,Helvetica'}
+        style={{
+          dominantBaseline: 'text-before-edge',
+        }}>
+        {'wow such flexbox'}
+      </text>,
+      <polyline
+        fill={'none'}
+        points={'0,100 50,0 100,100'}
+        stroke={'yellow'}
+        strokeWidth={3}
+      />,
+      <rect fill={'red'} height={100} width={100} />,
+      <image
+        height={100}
+        href={'https://media.giphy.com/media/RKCAeG662WQSc/giphy.gif'}
+        width={80}
+      />,
+      <CustomComponent />,
+      /* eslint-enable react/jsx-key */
+    ].map((child, index) =>
+      React.cloneElement(child, {
+        ...child.props,
+        key: `child${index}`,
+        style: {
+          ...child.props.style,
+          marginBottom: 20,
+          marginRight: 20,
+        },
+      }),
+    );
 
     return getStory(flexProps, children);
   })
 
   .add('nested', () => {
-    const flexProps = {
-      flexDirection: 'row',
-    };
-
     class TextComponent extends React.Component {
       static propTypes = {
         x: PropTypes.number,
         y: PropTypes.number,
       };
+
       render() {
+        const {x, y} = this.props;
         return (
-          <g
-            transform={`translate(${this.props.x || 0} ${this.props.y || 0})`}>
-            <text style={{
-              dominantBaseline: 'text-before-edge',
-              fill: 'white',
-              fontFamily: 'Arial,Helvetica',
-            }}>
+          <g transform={`translate(${x || 0} ${y || 0})`}>
+            <text
+              style={{
+                dominantBaseline: 'text-before-edge',
+                fill: 'white',
+                fontFamily: 'Arial,Helvetica',
+              }}>
               {'flexy flex flex'}
             </text>
           </g>
@@ -641,15 +513,13 @@ storiesOf('Flexbox', module)
 
     const barHeight = 60;
     return (
-      <svg
-        height={barHeight}
-        width={width}>
-
+      <svg height={barHeight} width={width}>
         <rect
           className={'BackgroundFill'}
           fill={'#ccc'}
           height={barHeight}
-          width={width} />
+          width={width}
+        />
 
         <Flexbox
           className={'contents'}
@@ -660,7 +530,6 @@ storiesOf('Flexbox', module)
             padding: 12,
             width,
           }}>
-
           <Flexbox
             className={'row1'}
             style={{
@@ -685,9 +554,13 @@ storiesOf('Flexbox', module)
               fill={'#f0c'}
               height={10}
               style={{marginLeft: 28}}
-              width={10} />
+              width={10}
+            />
           </Flexbox>
         </Flexbox>
       </svg>
     );
   });
+
+/* eslint-enable no-shadow */
+/* eslint-enable react/no-array-index-key */
