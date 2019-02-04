@@ -1,28 +1,32 @@
 ## What is this?
+
 A React-based [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) layout container for SVG elements.
 
 ## What problem does it solve?
+
 SVG lacks the convenient layout features of CSS; all elements must be positioned absolutely. There are ways around this (with [foreignObject](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/foreignObject) for instance), but there are cases where you just end up having to write cumbersome layout calculations for absolute positions. This component attempts to free us from having to do that.
+
+[Swizec Teller](https://twitter.com/Swizec) did a nice write-up that explains why he likes it and provides numerous examples: [Build responsive SVG layouts with react-svg-flexbox](https://swizec.com/blog/build-easier-responsive-svg-layout-react-svg-flexbox/swizec/8577).
 
 ## Does it work just like Flexbox in HTML?
 
-No. It computes positions using Facebook's [css-layout](https://www.npmjs.com/package/css-layout), which implements a subset of the  Flexbox algorithm. [This table](https://www.npmjs.com/package/css-layout#supported-attributes) shows what is supported. These settings are not supported:
+No. It computes positions using Facebook's [css-layout](https://www.npmjs.com/package/css-layout), which implements a subset of the Flexbox algorithm. [This table](https://www.npmjs.com/package/css-layout#supported-attributes) shows what is supported. These settings are not supported:
 
 **On the container:**
 
-* `align-content: space-between`
-* `align-items: baseline`
-* `align-items: stretch`
-* `flex-wrap: wrap-reverse`
-* `justify-content: space-evenly`
+- `align-content: space-between`
+- `align-items: baseline`
+- `align-items: stretch`
+- `flex-wrap: wrap-reverse`
+- `justify-content: space-evenly`
 
 **On the children:**
 
-* `align-self`
-* `flex-basis`
-* `flex-grow`
-* `flex-shrink`
-* `order`
+- `align-self`
+- `flex-basis`
+- `flex-grow`
+- `flex-shrink`
+- `order`
 
 Despite these omissions, [css-layout](https://www.npmjs.com/package/css-layout) implements enough of Flexbox to be useful.
 
@@ -49,30 +53,20 @@ import React from 'react';
 import Flexbox from 'react-svg-flexbox';
 
 export default class App extends React.Component {
-
   render() {
     return (
-      <svg
-        height={600}
-        width={800}>
+      <svg height={600} width={800}>
         <Flexbox
-          styles={{
+          style={{
             flexDirection: 'row',
             justifyContent: 'flex-start',
           }}>
-          <rect
-            fill={'#f0c'}
-            height={10}
-            width={10} />
-          <rect
-            fill={'#f0c'}
-            height={10}
-            width={20} />
+          <rect fill={'#f0c'} height={10} width={10} />
+          <rect fill={'#f0c'} height={10} width={20} />
         </Flexbox>
       </svg>
     );
   }
-
 }
 ```
 
@@ -112,19 +106,15 @@ import Flexbox from 'react-svg-flexbox';
 import CustomComponent from 'my-app/components';
 
 export default class App extends React.Component {
-
   render() {
     return (
-      <svg
-        height={600}
-        width={800}>
+      <svg height={600} width={800}>
         <Flexbox>
           <CustomComponent />
         </Flexbox>
       </svg>
     );
   }
-
 }
 ```
 
@@ -135,7 +125,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class CustomComponent extends React.Component {
-
   static propTypes = {
     x: PropTypes.number,
     y: PropTypes.number,
@@ -150,7 +139,6 @@ export default class CustomComponent extends React.Component {
       </g>
     );
   }
-
 }
 ```
 
@@ -159,4 +147,3 @@ If you don't do this, your layout values will disappear meaninglessly into the v
 #### Text
 
 You might have to fiddle with [baseline style](http://bl.ocks.org/eweitnauer/7325338) in order to get text elements into the correct vertical alignment.
-
