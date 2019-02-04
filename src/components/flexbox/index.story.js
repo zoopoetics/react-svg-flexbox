@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {storiesOf} from '@storybook/react';
-import Flexbox from './';
+import Flexbox from ".";
 
 const fill = '#cd6a51';
 const height = 600;
@@ -119,7 +119,7 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'no-wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
@@ -139,7 +139,7 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
@@ -329,7 +329,7 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
@@ -351,7 +351,7 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
@@ -373,7 +373,7 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
@@ -395,7 +395,7 @@ storiesOf('Flexbox', module)
       flexDirection: 'row',
       flexWrap: 'wrap',
     };
-    const children = Array.from({length: 6}).map((datum, index) => (
+    const children = Array.from({length: 6}, (datum, index) => (
       <g
         key={index}
         style={{
@@ -493,6 +493,7 @@ storiesOf('Flexbox', module)
         x: PropTypes.number,
         y: PropTypes.number,
       };
+
       render() {
         return (
           <g transform={`translate(${this.props.x || 0} ${this.props.y || 0})`}>
