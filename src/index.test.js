@@ -12,14 +12,8 @@ describe('Flexbox', () => {
   beforeEach(() => {
     component = renderer.create(
       <Flexbox onLayout={onLayout}>
-        <rect
-          fill={'#f0c'}
-          height={10}
-          width={10} />
-        <rect
-          fill={'#ccc'}
-          height={456}
-          width={123} />
+        <rect fill={'#f0c'} height={10} width={10} />
+        <rect fill={'#ccc'} height={456} width={123} />
       </Flexbox>,
     );
     instance = component.getInstance();
@@ -65,9 +59,7 @@ describe('Flexbox', () => {
     it('returns all children flattened into a single array', () => {
       class ReactComponent extends React.Component {
         render() {
-          return (
-            <g></g>
-          );
+          return <g />;
         }
       }
 
