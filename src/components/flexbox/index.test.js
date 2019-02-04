@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import Flexbox from './index';
 
+/* eslint-disable max-statements */
 describe('Flexbox', () => {
   const onLayout = jest.fn();
 
@@ -80,8 +81,9 @@ describe('Flexbox', () => {
     it('returns an array of children with measurements merged into their styles', () => {
       const length = 10;
       const fill = '#f0c';
-      const style = {fill};
-      const props = {style};
+      const props = {
+        style: {fill},
+      };
       const child = {props};
       const children = Array.from({length}, () => child);
       const height = 80;
@@ -233,3 +235,4 @@ describe('Flexbox', () => {
     });
   });
 });
+/* eslint-enable max-statements */

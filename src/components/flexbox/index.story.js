@@ -1,7 +1,10 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import {storiesOf} from '@storybook/react';
-import Flexbox from ".";
+import Flexbox from '.';
 
 const fill = '#cd6a51';
 const height = 600;
@@ -429,10 +432,9 @@ storiesOf('Flexbox', module)
       };
 
       render() {
+        const {x, y} = this.props;
         return (
-          <g
-            className={'CustomComponent'}
-            transform={`translate(${this.props.x} ${this.props.y})`}>
+          <g className={'CustomComponent'} transform={`translate(${x} ${y})`}>
             <rect fill={'blue'} height={100} width={400} />
             <text fill={'white'} fontFamily={'Arial,Helvetica'} x={20} y={20}>
               {'react-svg-flexbox'}
@@ -442,6 +444,7 @@ storiesOf('Flexbox', module)
       }
     }
 
+    /* eslint-disable react/jsx-key */
     const children = [
       <circle fill={'black'} r={50} />,
       <ellipse fill={'white'} rx={50} ry={30} />,
@@ -468,6 +471,7 @@ storiesOf('Flexbox', module)
         width={80}
       />,
       <CustomComponent />,
+      /* eslint-enable react/jsx-key */
     ].map((child, index) =>
       React.cloneElement(child, {
         ...child.props,
@@ -484,10 +488,6 @@ storiesOf('Flexbox', module)
   })
 
   .add('nested', () => {
-    const flexProps = {
-      flexDirection: 'row',
-    };
-
     class TextComponent extends React.Component {
       static propTypes = {
         x: PropTypes.number,
@@ -495,8 +495,9 @@ storiesOf('Flexbox', module)
       };
 
       render() {
+        const {x, y} = this.props;
         return (
-          <g transform={`translate(${this.props.x || 0} ${this.props.y || 0})`}>
+          <g transform={`translate(${x || 0} ${y || 0})`}>
             <text
               style={{
                 dominantBaseline: 'text-before-edge',
@@ -560,3 +561,6 @@ storiesOf('Flexbox', module)
       </svg>
     );
   });
+
+/* eslint-enable no-shadow */
+/* eslint-enable react/no-array-index-key */

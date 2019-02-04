@@ -3835,10 +3835,10 @@ eslint-config-prettier@4.0.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-config-severe@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-severe/-/eslint-config-severe-1.0.0.tgz#95a7a793743f658352d6be6b726051a8508808c4"
-  integrity sha512-Qp97+kLtAOX65ba9EZ9FUix7XYhIRVjPhibweKH/WBavKrMGY2bY8z2HgaRVKJC5drq45AcCWc/bJCCy3KSkeg==
+eslint-config-severe@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-severe/-/eslint-config-severe-1.0.2.tgz#137b6fd1efb033d30245adc87ecac653ce8efe0c"
+  integrity sha512-DZ1mDu6VDCnhhRv0g+uD55OvPe9o24XoN2mC9Mq8Fc5ooprriuyObpB/Cj3V2W2OKnGOtZYx+rTuMQ0Pp1p8Fg==
 
 eslint-import-resolver-node@^0.3.2:
   version "0.3.2"

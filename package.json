@@ -36,7 +36,7 @@
     "css-layout": "1.1.1",
     "eslint": "5.13.0",
     "eslint-config-prettier": "4.0.0",
-    "eslint-config-severe": "1.0.0",
+    "eslint-config-severe": "1.0.2",
     "eslint-plugin-array-func": "3.1.2",
     "eslint-plugin-eslint-comments": "3.0.1",
     "eslint-plugin-filenames": "1.3.2",
@@ -66,9 +66,6 @@
     ]
   },
   "eslintConfig": {
-    "env": {
-      "jest": true
-    },
     "extends": [
       "severe"
     ],
@@ -77,16 +74,17 @@
         "error",
         {
           "exceptions": [
+            "r",
             "x",
             "y"
           ]
         }
-      ]
-    },
-    "settings": {
-      "react": {
-        "version": "detect"
-      }
+      ],
+      "max-classes-per-file": 0,
+      "max-lines": 0,
+      "react/forbid-component-props": 0,
+      "react/jsx-max-depth": 0,
+      "react/no-multi-comp": 0
     }
   },
   "jest": {
