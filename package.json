@@ -17,7 +17,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "BABEL_ENV=production rollup -c",
     "build-storybook": "BABEL_ENV=production build-storybook",
     "start": "BABEL_ENV=development start-storybook -p 9009",
     "test": "BABEL_ENV=test jest"
@@ -29,11 +29,11 @@
     "@storybook/addons": "4.1.11",
     "@storybook/react": "4.1.11",
     "babel-jest": "24.0.0",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "8.0.5",
     "babel-preset-react": "6.24.1",
     "css-layout": "1.1.1",
     "jest": "24.0.0",
-    "prettier": "^1.16.4",
+    "prettier": "1.16.4",
     "prop-types": "^15.6.2",
     "react": "^15.3.0 || ^16.0",
     "react-dom": "^15.3.0 || ^16.0",
