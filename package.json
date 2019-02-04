@@ -1,6 +1,6 @@
 {
   "name": "react-svg-flexbox",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "A React-based Flexbox layout container for SVG elements.",
   "main": "dist/bundle.js",
   "license": "MIT",
@@ -18,37 +18,36 @@
   ],
   "scripts": {
     "build": "rollup -c",
-    "build-storybook": "BABEL_ENV=dev build-storybook",
-    "start": "BABEL_ENV=dev start-storybook -p 9009",
-    "test": "BABEL_ENV=dev jest"
+    "build-storybook": "BABEL_ENV=production build-storybook",
+    "start": "BABEL_ENV=development start-storybook -p 9009",
+    "test": "BABEL_ENV=test jest"
   },
   "dependencies": {
-    "css-layout": "1.1.1",
-    "prop-types": "^15.6.0",
-    "react": "^15.3.0 || ^16.0",
-    "react-dom": "^15.3.0 || ^16.0"
-  },
-  "devDependencies": {
-    "@storybook/addon-actions": "3.3.12",
-    "@storybook/addon-links": "3.3.12",
-    "@storybook/addons": "3.3.12",
-    "@storybook/react": "3.3.12",
-    "babel-core": "6.26.0",
-    "babel-jest": "22.1.0",
-    "babel-plugin-external-helpers": "6.22.0",
-    "babel-preset-env": "1.6.1",
+    "@babel/core": "7.2.2",
+    "@storybook/addon-actions": "4.1.11",
+    "@storybook/addon-links": "4.1.11",
+    "@storybook/addons": "4.1.11",
+    "@storybook/react": "4.1.11",
+    "babel-jest": "24.0.0",
+    "babel-loader": "^8.0.5",
     "babel-preset-react": "6.24.1",
-    "babel-preset-react-app": "3.0.3",
-    "babel-preset-stage-0": "6.24.1",
-    "babel-runtime": "6.26.0",
-    "jest": "22.1.4",
-    "react-test-renderer": "16.2.0",
-    "request": "2.83.0",
-    "rollup": "0.56.2",
-    "rollup-plugin-babel": "3.0.3",
-    "rollup-plugin-commonjs": "8.3.0",
-    "rollup-plugin-node-resolve": "3.0.3",
-    "rollup-plugin-uglify": "3.0.0"
+    "css-layout": "1.1.1",
+    "jest": "24.0.0",
+    "prop-types": "^15.6.2",
+    "react": "^15.3.0 || ^16.0",
+    "react-dom": "^15.3.0 || ^16.0",
+    "react-test-renderer": "16.7.0",
+    "request": "2.88.0",
+    "rollup": "1.1.2",
+    "rollup-plugin-babel": "4.3.2",
+    "rollup-plugin-commonjs": "9.2.0",
+    "rollup-plugin-node-resolve": "4.0.0",
+    "rollup-plugin-uglify": "6.0.2"
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
   },
   "jest": {
     "collectCoverageFrom": [
