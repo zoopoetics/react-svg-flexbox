@@ -17,10 +17,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "BABEL_ENV=production rollup -c",
-    "build-storybook": "BABEL_ENV=production build-storybook",
-    "start": "BABEL_ENV=development start-storybook -p 9009",
-    "test": "BABEL_ENV=test jest"
+    "build": "cross-env BABEL_ENV=production rollup -c",
+    "build-storybook": "cross-env BABEL_ENV=production build-storybook",
+    "start": "cross-env BABEL_ENV=development start-storybook -p 9009",
+    "test": "cross-env BABEL_ENV=test jest"
   },
   "dependencies": {
     "@babel/core": "7.2.2",
@@ -33,6 +33,7 @@
     "babel-jest": "24.0.0",
     "babel-loader": "8.0.5",
     "babel-preset-react": "6.24.1",
+    "cross-env": "5.2.0",
     "css-layout": "1.1.1",
     "eslint": "5.13.0",
     "eslint-config-prettier": "4.0.0",
