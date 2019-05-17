@@ -87,17 +87,17 @@ export default class Flexbox extends React.Component {
   by flattening children out into a single array.
   */
   getFlattenedChildren(children) {
-    return (
-      children
-        // Filter out null indexes:
-        .filter((child) => child)
-        // Filter out string literals:
-        .filter((child) => typeof child !== 'string')
-        // Ensure that all children are arrays:
-        .map((child) => (Array.isArray(child) ? child : [child]))
-        // Flatten into a single array:
-        .reduce((previous, current) => previous.concat(current), [])
-    );
+    return Array.isArray(children)
+      ? children
+          // Filter out null indexes:
+          .filter((child) => child)
+          // Filter out string literals:
+          .filter((child) => typeof child !== 'string')
+          // Ensure that all children are arrays:
+          .map((child) => (Array.isArray(child) ? child : [child]))
+          // Flatten into a single array:
+          .reduce((previous, current) => previous.concat(current), [])
+      : [children];
   }
 
   /*

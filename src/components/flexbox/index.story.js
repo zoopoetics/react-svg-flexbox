@@ -560,6 +560,17 @@ storiesOf('Flexbox', module)
         </Flexbox>
       </svg>
     );
+  })
+
+  .add('flex-direction: row-reverse, with a single child', () => {
+    // To test that there are no bugs with a single child.
+    const flexProps = {
+      flexDirection: 'row-reverse',
+    };
+    return getStory(
+      flexProps,
+      <rect fill={fill} height={rectSize} width={rectSize} />,
+    );
   });
 
 /* eslint-enable no-shadow */
