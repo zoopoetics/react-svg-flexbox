@@ -1,6 +1,6 @@
 {
   "name": "react-svg-flexbox",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A React-based Flexbox layout container for SVG elements.",
   "main": "dist/bundle.js",
   "license": "MIT",
