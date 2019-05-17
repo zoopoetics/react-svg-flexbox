@@ -1,0 +1,1 @@
+{"version":3,"file":"main.782e23b512e9e990c3b0.bundle.js","sources":["webpack:///./.storybook/config.js"],"sourcesContent":["import {configure} from '@storybook/react';\n\nfunction loadStories() {\n  require('../src/components/flexbox/index.story');\n}\n\nconfigure(loadStories, module);\n"],"mappings":"AAAA","sourceRoot":""}
