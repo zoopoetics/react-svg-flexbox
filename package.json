@@ -50,7 +50,7 @@
     "husky": "2.3.0",
     "jest": "24.8.0",
     "lint-staged": "9.2.5",
-    "prettier": "1.17.1",
+    "prettier": "1.18.2",
     "prop-types": "^15.6.2",
     "react": "^15.3.0 || ^16.0",
     "react-dom": "^15.3.0 || ^16.0",
