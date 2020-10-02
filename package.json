@@ -23,6 +23,14 @@
     "test": "cross-env BABEL_ENV=test jest"
   },
   "dependencies": {
+    "css-layout": "1.1.1",
+    "prop-types": "^15.6.2"
+  },
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.0",
+    "react-dom": "^15.3.0 || ^16.0"
+  },
+  "devDependencies": {
     "@babel/core": "7.4.4",
     "@storybook/addon-actions": "5.1.11",
     "@storybook/addon-links": "5.1.11",
@@ -34,7 +42,6 @@
     "babel-loader": "8.0.6",
     "babel-preset-react": "6.24.1",
     "cross-env": "5.2.0",
-    "css-layout": "1.1.1",
     "eslint": "5.16.0",
     "eslint-config-prettier": "4.3.0",
     "eslint-config-severe": "1.1.0",
@@ -51,7 +58,6 @@
     "jest": "24.8.0",
     "lint-staged": "9.2.5",
     "prettier": "1.18.2",
-    "prop-types": "^15.6.2",
     "react": "^15.3.0 || ^16.0",
     "react-dom": "^15.3.0 || ^16.0",
     "react-test-renderer": "16.8.6",
@@ -60,6 +66,7 @@
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-commonjs": "10.0.0",
     "rollup-plugin-node-resolve": "5.0.0",
+    "rollup-plugin-terser": "4.0.4",
     "webpack": "4.31.0",
     "yarn": "1.17.3"
   },
@@ -119,8 +126,5 @@
     "moduleFileExtensions": [
       "js"
     ]
-  },
-  "devDependencies": {
-    "rollup-plugin-terser": "4.0.4"
   }
 }
