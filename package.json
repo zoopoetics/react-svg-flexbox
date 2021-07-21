@@ -23,7 +23,7 @@
     "test": "cross-env BABEL_ENV=test jest"
   },
   "dependencies": {
-    "@babel/core": "7.4.4",
+    "@babel/core": "7.14.8",
     "@storybook/addon-actions": "5.1.11",
     "@storybook/addon-links": "5.1.11",
     "@storybook/addons": "5.1.11",
